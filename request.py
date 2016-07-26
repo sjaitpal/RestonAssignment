@@ -19,8 +19,11 @@ lookupItem = urlopen(lookUp)
 JSON_dump_2 = lookupItem.read()
 item_List_2 = json.loads(JSON_dump_2)
 final_list = {}
-
-for items in range(0,10):
+if len(item_List_2) < 10:
+	num = len(item_List_2)
+else:
+	num = 10
+for items in range(0,num):
 	itemIDpro = item_List_2[items]['itemId']
 	itemName = item_List_2[items]['name']
 	lookupReview = Request('http://api.walmartlabs.com/v1/reviews/'+str(itemIDpro)+'?apiKey='+apikey+'&format=json')
